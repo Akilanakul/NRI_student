@@ -227,9 +227,9 @@ class Student{
        
         }	}
 }
-$or=new Student();
+// $or=new Student();
 // // $or->getStudentByEmail("akila90");
-$or->load(1);
+// $or->load(1);
 
 // // // $or->getRecipe(2);
 // $or->studentname="asdf";
@@ -239,8 +239,8 @@ $or->load(1);
 // $or->studentID="1";
 
 // $or->save();
-echo "<pre>";
-print_r($or->fee);
+// echo "<pre>";
+// print_r($or->fee);
 // print_r(
 //     $or->studentname);
-echo "</pre>";
+// echo "</pre>";
