@@ -1,0 +1,89 @@
+<!-- login div @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+           <?php
+                 $oForm=new Form();
+
+
+               if(isset($_POST['login']) == true)
+                   {
+                    
+                    
+                    $oForm->data=$_POST;
+
+                   
+                    
+                    $oStudent=new Student();
+
+                    if($oForm->valid==true)
+                    {
+                      $sEmail=$_POST["email"];
+
+                      
+                     
+                     $bLoaded=$oStudent->getStudentByEmail($sEmail);
+
+                      if($bLoaded)
+                        // password_verify($_POST["Password"],$oUser->userpassword)== false
+                        {
+                               // if($_POST["password"]==$oUser->userpassword)
+                          if(password_verify($_POST["Password"],$oUser->userpassword)== false)
+                               {
+                                  $_SESSION["studentID"]=$oStudent->studentID;
+                              
+                                  echo "successful";
+
+                                  header("Location:studentdetails.php?key=".$_SESSION["studentID"]);
+                                  exit;
+                               }
+                               else
+                              {
+                               $oForm->raiseCustomError("password","This password is incorrect");
+                              }
+
+                        }
+                        else
+                        {
+                          
+                          $oForm->raiseCustomError("email","This email has not been registered yet");
+                 
+                        }
+
+                     
+                      // $oUser->useremail=$_POST["password"];
+                      
+                    
+                      // header("Location:index.php");
+                      // exit; 
+                    }
+                  }
+
+               
+               
+        echo "<div id='login'> ";  
+          echo "<h1>Welcome Back!</h1><form class='myForm' method='post' enctype='multipart/form-data'>";
+          
+          
+           
+            $oForm->makeInput("email","");
+            $oForm->makeInput("password","");
+            $oForm->makeSubmit("login","");
+            echo $oForm->html;
+            
+           
+      
+          
+         
+          
+          
+          
+         
+
+        echo "</div>";
+        
+  
+
+    ?>
+
+
+
+
+   
